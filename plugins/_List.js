@@ -17,8 +17,8 @@ const getHoy = () => {
 }
 
 const EMOJIS_DIA = {
-    lunes: '📅', martes: '📅', miercoles: '📅', jueves: '📅',
-    viernes: '📅', sabado: '📅', extra: '📦'
+    lunes: '🌩️', martes: '🌩️', miercoles: '🌩️', jueves: '🌩️',
+    viernes: '🌩️', sabado: '🌩️', extra: '⛈️'
 }
 
 let handler = async (m, { conn, args, command, isAdmin }) => {
@@ -29,41 +29,46 @@ let handler = async (m, { conn, args, command, isAdmin }) => {
     let hoy = getHoy()
     let texto = args.join(' ')
 
-    // =====.v ===== CON DISEÑO PRO
+    // =====.v ===== CON DISEÑO RAYO PREM
     if(command === 'v'){
-        let msg = `╭━━━『 🎯 *LISTA SEMANAL* 』━━━╮\n│\n`
+        let msg = `⛈️ *RAYO PREM BOT* ➔ *LISTA SEMANAL* 🌙
+╔════════════════════════╗
+   ⚡ *SORTEO ACTIVO* ⚡
+╚════════╝\n\n`
 
         for(let d of [...DIAS, 'extra']){
-            msg += `├─ ${EMOJIS_DIA[d]} *${d.toUpperCase()}* ─┤\n`
+            msg += `╭─── ${EMOJIS_DIA[d]} ${d.toUpperCase()} ───╮\n`
             if(data[gid][d].length === 0) {
                 msg += `│ _Sin participantes_\n`
             } else {
                 data[gid][d].forEach((u,i) => {
-                    msg += `│ ${i+1}️⃣ *${u.nombre}*\n`
+                    msg += `│ ${i+1}️⃣ 👤 *${u.nombre}*\n`
                     msg += `│ 📱 \`${u.numero}\`\n`
-                    msg += `│ 🎁 ${u.premio}\n`
+                    msg += `│ 🎁 *${u.premio}*\n`
                 })
             }
-            msg += `│\n`
+            msg += `╰───────────────────╯\n\n`
         }
 
-        msg += `╰━━━『 📜 *COMANDOS* 』━━━╯\n`
-        msg += `💬 *.list* Nombre / Numero / Premio\n`
-        msg += `💬 *.extra* Nombre / Numero / Premio\n`
-        msg += `💬 *.delall* Borrar todo [Admin]\n`
-        msg += `💬 *.v* Ver esta lista`
+        msg += `╭─── 📜 COMANDOS RAYO ───╮\n`
+        msg += `│ ⚡ *.list* Nombre / Numero / Premio\n`
+        msg += `│ ⛈️ *.extra* Nombre / Numero / Premio\n`
+        msg += `│ 🗑️ *.delall* Borrar todo [Admin]\n`
+        msg += `│ 📊 *.v* Ver esta lista\n`
+        msg += `╰────────────────────────╯\n\n`
+        msg += `> *El trueno que sortea* ⚡\n⛈️ *Team Nightwish*`
 
         return conn.reply(m.chat, msg, m)
     }
 
     // =====.list =====
     if(command === 'list'){
-        if(hoy === 'extra') return conn.reply(m.chat, '❌ *Domingo solo se anota en EXTRA* 📦', m)
+        if(hoy === 'extra') return conn.reply(m.chat, `⛈️ *RAYO PREM ERROR* ➔ *Domingo solo se anota en EXTRA* 📦`, m)
 
         let [nombre, numero, premio] = texto.split('/').map(x => x.trim())
         numero = numero?.replace(/[^0-9]/g, '')
 
-        if(!nombre ||!numero ||!premio) return conn.reply(m.chat, `❌ *Formato incorrecto*\n\n*Ejemplo:*\n.list Whois / +51 936 994 155 / Bot mensual`, m)
+        if(!nombre ||!numero ||!premio) return conn.reply(m.chat, `⛈️ *RAYO PREM ERROR* ➔ *Formato incorrecto*\n\n*Ejemplo:*\n.list Whois / +51 936 994 155 / Bot mensual`, m)
 
         for(let d of Object.keys(data[gid])){
             data[gid][d] = data[gid][d].filter(u => u.numero!== numero)
@@ -71,7 +76,7 @@ let handler = async (m, { conn, args, command, isAdmin }) => {
 
         data[gid][hoy].push({nombre, numero, premio})
         guardarDB(data)
-        return conn.reply(m.chat, `✅ *¡ANOTADO!*\n\n👤 *Nombre:* ${nombre}\n📱 *Número:* ${numero}\n🎁 *Premio:* ${premio}\n📅 *Día:* ${hoy.toUpperCase()}`, m)
+        return conn.reply(m.chat, `⚡ *¡ANOTADO EN RAYO!* 🌙\n\n👤 *Nombre:* ${nombre}\n📱 *Número:* ${numero}\n🎁 *Premio:* ${premio}\n📅 *Día:* ${hoy.toUpperCase()}\n\n⛈️ *Team Nightwish*`, m)
     }
 
     // =====.extra =====
@@ -79,7 +84,7 @@ let handler = async (m, { conn, args, command, isAdmin }) => {
         let [nombre, numero, premio] = texto.split('/').map(x => x.trim())
         numero = numero?.replace(/[^0-9]/g, '')
 
-        if(!nombre ||!numero ||!premio) return conn.reply(m.chat, `❌ *Formato incorrecto*\n\n*Ejemplo:*\n.extra Juan / 999888777 / 20 soles`, m)
+        if(!nombre ||!numero ||!premio) return conn.reply(m.chat, `⛈️ *RAYO PREM ERROR* ➔ *Formato incorrecto*\n\n*Ejemplo:*\n.extra Juan / 999888777 / 20 soles`, m)
 
         for(let d of Object.keys(data[gid])){
             data[gid][d] = data[gid][d].filter(u => u.numero!== numero)
@@ -87,15 +92,15 @@ let handler = async (m, { conn, args, command, isAdmin }) => {
 
         data[gid].extra.push({nombre, numero, premio})
         guardarDB(data)
-        return conn.reply(m.chat, `📦 *¡ANOTADO EN EXTRA!*\n\n👤 *Nombre:* ${nombre}\n📱 *Número:* ${numero}\n🎁 *Premio:* ${premio}`, m)
+        return conn.reply(m.chat, `⛈️ *ANOTADO EN EXTRA* 🌙\n\n👤 *Nombre:* ${nombre}\n📱 *Número:* ${numero}\n🎁 *Premio:* ${premio}\n\n> *Premio del trueno* ⚡`, m)
     }
 
     // =====.delall =====
     if(command === 'delall'){
-        if(!isAdmin) return conn.reply(m.chat, '❌ *Solo admins pueden usar este comando*', m)
+        if(!isAdmin) return conn.reply(m.chat, '⛈️ *RAYO PREM ERROR* ➔ *Solo admins pueden usar este comando*', m)
         data[gid] = {lunes:[], martes:[], miercoles:[], jueves:[], viernes:[], sabado:[], extra:[]}
         guardarDB(data)
-        return conn.reply(m.chat, `🗑️ *LISTA RESETEADA*\n\n✅ Se eliminó todo: Lunes a Sábado + Extra\nEl grupo está limpio para empezar de 0`, m)
+        return conn.reply(m.chat, `🗑️ *RAYO PREM LIMPIEZA* 🌙\n\n⚡ *LISTA RESETEADA*\n\n✅ Se eliminó todo: Lunes a Sábado + Extra\n> *El grupo está limpio para empezar de 0*`, m)
     }
 }
 
