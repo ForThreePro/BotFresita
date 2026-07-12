@@ -2,11 +2,11 @@ import os from 'os'
 
 let handler = async (m) => {
     let cpu = os.loadavg()[0].toFixed(2)
-    m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+    m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 🖥️ *MONITOR CPU*
 │
-│ ⚡ *Carga Actual:* ${cpu}%
-│ 🌙 *Estado:* Procesando rayos
+│ 🍰 *Carga Actual:* ${cpu}%
+│ 🌸 *Estado:* Horneando fresitas
 ╰─────────────────❒`)
 }
 
