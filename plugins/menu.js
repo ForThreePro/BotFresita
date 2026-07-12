@@ -4,7 +4,7 @@ import { readFileSync } from 'fs'
 let handler = async (m, { conn, usedPrefix }) => {
   let taguser = m.mentionedJid && m.mentionedJid[0]? m.mentionedJid[0] : m.quoted? m.quoted.sender : m.sender
 
-  const img = readFileSync(join(process.cwd(), 'storage', 'img', 'rayo.jpg'))
+  const img = readFileSync(join(process.cwd(), 'storage', 'img', 'rayo.jpg')) // Cambia a tu imagen fresita
 
   // Fecha y hora
   let fecha = new Date()
@@ -21,10 +21,10 @@ let handler = async (m, { conn, usedPrefix }) => {
   let m2 = Math.floor(uptime / 60000) % 60
   let s = Math.floor(uptime / 1000) % 60
 
-  let menuText = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+  let menuText = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │
 │ 👤 *Usuario:* @${taguser.split('@')[0]}
-│ ⚡ *Prefijo:* [ ${usedPrefix} ]
+│ 🌸 *Prefijo:* [ ${usedPrefix} ]
 │ ⏰ *Activo:* ${h}h ${m2}m ${s}s
 │
 ├─❒ *FECHA Y HORA* ❒
@@ -51,25 +51,25 @@ let handler = async (m, { conn, usedPrefix }) => {
     'group': '👥',
     'info': 'ℹ️',
     'fun': '🎭',
-    'main': '🌙',
+    'main': '🍓',
     'sin categoria': '📦'
   }
 
   for (let category in groups) {
-    let emoji = emojis[category] || '⚡'
+    let emoji = emojis[category] || '🍰'
     menuText += `╭─❒ ${emoji} *${category.toUpperCase()}* ❒\n`
     for (let cmd of groups[category]) {
-      menuText += `│ ⚡ ${usedPrefix}${cmd}\n`
+      menuText += `│ 🍓 ${usedPrefix}${cmd}\n`
     }
     menuText += `╰─────────────────❒\n\n`
   }
 
   menuText += `╭─❒ *INFO DEL BOT* ❒
-│ 🌙 *Bot:* Team Nightwish
+│ 🍓 *Bot:* Fresita Bot
 │ 👑 *Creador:* Whois Yallico
-│ ⛈️ *Versión:* 1.0.0
+│ 🍰 *Versión:* 1.0.0
 │
-│ > *“Que el trueno obedezca tus órdenes”*
+│ > *“Que las fresitas obedezcan tus órdenes”*
 ╰─────────────────❒`
 
   await conn.sendMessage(m.chat, {
