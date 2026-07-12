@@ -1,20 +1,20 @@
 let handler = async (m, { conn }) => {
     try {
         let link = await conn.groupInviteCode(m.chat)
-        let text = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ 🔗 *LINK DEL GRUPO*
+        let text = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🔗 *LINK DE LA CASITA*
 │
-│ ⚡ https://chat.whatsapp.com/${link}
+│ 🌸 https://chat.whatsapp.com/${link}
 │
-│ > *“Comparte con responsabilidad”*
+│ > *“Comparte con dulzura fresita”* 🍰
 ╰─────────────────❒`
         m.reply(text)
     } catch {
-        m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ ⛈️ *ERROR*
+        m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🍰 *ERROR*
 │
-│ ⚡ *No pude obtener el link*
-│ 🌙 *¿Soy administrador del grupo?*
+│ 🌸 *No pude obtener el link*
+│ 🍓 *¿Soy administrador de la casita?*
 ╰─────────────────❒`)
     }
 }
