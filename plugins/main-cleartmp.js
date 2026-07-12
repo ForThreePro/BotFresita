@@ -5,11 +5,11 @@ let handler = async (m) => {
     if (fs.existsSync(tmpPath)) {
         fs.readdirSync(tmpPath).forEach(file => fs.unlinkSync(`${tmpPath}/${file}`))
     }
-    m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+    m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 🧹 *PURGA DE CACHÉ*
 │
 │ ✅ *Estado:* Archivos temporales eliminados
-│ 🌙 *El trueno está limpio*
+│ 🌸 *La casita está limpia*
 ╰─────────────────❒`)
 }
 
