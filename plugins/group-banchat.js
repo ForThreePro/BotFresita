@@ -10,36 +10,36 @@ let handler = async (m, { conn, isOwner, isAdmin, isROwner, command }) => {
 
   switch (type) {
     case 'banchat': case 'banearchat':
-      if (chat.isBanned) return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ ⛈️ *ESTADO DEL GRUPO*
+      if (chat.isBanned) return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🍰 *ESTADO DE LA CASITA*
 │
-│ ⚡ *Este chat ya se encuentra baneado*
-│ 🌙 *El bot está inactivo aquí*
+│ 🌸 *Esta casita ya se encuentra baneada*
+│ 🍓 *El bot está inactivo aquí*
 ╰─────────────────❒`)
       chat.isBanned = true
-      await conn.reply(m.chat, `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ 🚫 *CHAT BANEADO*
+      await conn.reply(m.chat, `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🚫 *CASITA BANEADA*
 │
-│ ⚡ *El bot ha sido desactivado en este grupo*
-│ 🌙 *No responderé a ningún comando*
-│ ⛈️ *Desbaneen para reactivarme*
+│ 🍰 *El bot ha sido desactivado en esta casita*
+│ 🌸 *No responderé a ningún comando*
+│ 🍓 *Desbaneen para reactivarme*
 ╰─────────────────❒`, m)
       break
 
     case 'unbanchat': case 'desbanearchat':
-      if (!chat.isBanned) return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ ✅ *ESTADO DEL GRUPO*
+      if (!chat.isBanned) return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ ✅ *ESTADO DE LA CASITA*
 │
-│ ⚡ *Este chat no está baneado*
-│ 🌙 *El bot está activo*
+│ 🍰 *Esta casita no está baneada*
+│ 🌸 *El bot está activo*
 ╰─────────────────❒`)
       chat.isBanned = false
-      await conn.reply(m.chat, `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ ✅ *CHAT DESBANEADO*
+      await conn.reply(m.chat, `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ ✅ *CASITA DESBANEADA*
 │
-│ ⚡ *El bot vuelve a estar activo*
-│ 🌙 *Todos los comandos disponibles*
-│ ⛈️ *El trueno ha regresado*
+│ 🍰 *El bot vuelve a estar activo*
+│ 🌸 *Todos los comandos disponibles*
+│ 🍓 *Fresita ha regresado a la casita*
 ╰─────────────────❒`, m)
       break
 
