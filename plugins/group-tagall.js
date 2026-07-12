@@ -5,8 +5,8 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
       return;
     }
 
-    const customMessage = args.join(' ') || '⛈️ Invocación del Trueno';
-    const groupMetadata = await conn.groupMetadata(m.chat).catch(() => ({ subject: 'Grupo', participants: [] }));
+    const customMessage = args.join(' ') || '🍓 Reunión de Fresitas';
+    const groupMetadata = await conn.groupMetadata(m.chat).catch(() => ({ subject: 'Casita', participants: [] }));
     const groupName = groupMetadata.subject;
 
     // Lista de banderas por prefijo
@@ -52,15 +52,15 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
 
     const orderedFlags = countryFlags.map(c => c.bandera).concat(['🚩']);
 
-    // Texto con estética Team Nightwish
-    let messageText = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+    // Texto con estética FRESITA BOT
+    let messageText = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 📢 *INVOCACIÓN GENERAL*
 │
-│ 🌐 *Grupo:* ${groupName}
-│ ⚡ *Integrantes:* ${participants.length}
-│ 🌙 *Mensaje:* ${customMessage}
+│ 🌸 *Casita:* ${groupName}
+│ 🍰 *Fresitas:* ${participants.length}
+│ 🌸 *Mensaje:* ${customMessage}
 │
-├─❒ *INTEGRANTES POR PAÍS* ❒
+├─❒ *FRESITAS POR PAÍS* ❒
 `;
 
     for (const flag of orderedFlags) {
@@ -75,7 +75,7 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
 
     messageText += `╰─────────────────❒
 │
-│ > *“Que el trueno los reúna”*
+│ > *“Que las fresitas nos unan”*
 ╰─────────────────❒`;
 
     // NUEVO: Detectar foto del grupo
@@ -83,7 +83,7 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
     try {
       img = await conn.profilePictureUrl(m.chat, 'image') // Foto del grupo
     } catch {
-      img = 'https://files.evogb.win/jgBvm8.jpg' // Fallback trueno
+      img = 'https://i.imgur.com/8yKjQzL.jpg' // Fallback fresita
     }
 
     await conn.sendMessage(m.chat, {
@@ -93,11 +93,11 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
     }, { quoted: m });
 
   } catch (error) {
-    console.error("[ERROR EN NIGHTWISH]:", error);
-    conn.reply(m.chat, `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ ⛈️ *ERROR*
+    console.error("[ERROR EN FRESITA]:", error);
+    conn.reply(m.chat, `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🍰 *ERROR*
 │
-│ ⚡ *Ocurrió un error al ejecutar el comando*
+│ 🌸 *Ocurrió un error al ejecutar el comando*
 ╰─────────────────❒`, m);
   }
 };
