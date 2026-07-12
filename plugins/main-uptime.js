@@ -1,11 +1,11 @@
 let handler = async (m) => {
     let _uptime = process.uptime() * 1000
     let uptime = clockString(_uptime)
-    m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+    m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ ⏰ *TIEMPO ACTIVO*
 │
-│ ⚡ *Online:* ${uptime}
-│ 🌙 *Estado:* El trueno no duerme
+│ 🍰 *Online:* ${uptime}
+│ 🌸 *Estado:* La casita no duerme
 ╰─────────────────❒`)
 }
 
