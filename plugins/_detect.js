@@ -17,115 +17,115 @@ handler.before = async function (m, { conn, groupMetadata }) {
 
     switch (m.messageStubType) {
         case 21: // Cambiar nombre
-            txt = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ 🌙 *REGISTRO DEL GRUPO*
+            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🌸 *REGISTRO DE LA CASITA*
 │
 │ 📢 *CAMBIO DE NOMBRE*
 │ 👤 *Usuario:* ${usuario}
 │ 📝 *Nuevo:* _${m.messageStubParameters[0]}_
-│ 🌩️ *Grupo:* ${group}
+│ 🏠 *Casita:* ${group}
 │
-│ > *“El trueno ha renombrado”* ⚡
+│ > *“Fresita renombró la casita”* 🍓
 ╰─────────────────❒`; break
 
         case 22: // Cambiar foto
-            txt = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ 🌙 *REGISTRO DEL GRUPO*
+            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🌸 *REGISTRO DE LA CASITA*
 │
 │ 📸 *CAMBIO DE FOTO*
 │ 👤 *Usuario:* ${usuario}
 │ 🖼️ *Nueva imagen establecida*
-│ 🌩️ *Grupo:* ${group}
+│ 🏠 *Casita:* ${group}
 │
-│ > *“Que brille bajo la noche”* ⚡
+│ > *“Que se vea dulce la casita”* 🍰
 ╰─────────────────❒`; break
 
         case 23: // Cambiar link
-            txt = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ ⛈️ *ALERTA DE SEGURIDAD*
+            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🍓 *ALERTA DULCE*
 │
 │ 🔗 *LINK RESETEADO*
 │ 👤 *Usuario:* ${usuario}
-│ 🌩️ *Grupo:* ${group}
+│ 🏠 *Casita:* ${group}
 │
-│ > *“El portal ha sido alterado”* ⚡
+│ > *“El portal de la casita cambió”* 🍰
 ╰─────────────────❒`; break
 
         case 25: // Cambiar ajustes
-            txt = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 🛡️ *AJUSTES MODIFICADOS*
 │
 │ 👤 *Usuario:* ${usuario}
 │ ⚙️ *Permisos:* ${m.messageStubParameters[0] == 'on'? '*SOLO ADMINS* 🔒' : '*TODOS* 🔓'}
-│ 📊 *Edición de info de grupo*
+│ 📊 *Edición de info de casita*
 │
-│ > *“El control cambió de manos”* ⚡
+│ > *“El control cambió de manos”* 🍓
 ╰─────────────────❒`; break
 
         case 26: // Abrir/Cerrar
-            txt = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ 🌙 *ESTADO DEL CHAT*
+            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🌸 *ESTADO DE LA CASITA*
 │
 │ 👤 *Usuario:* ${usuario}
 │ 🗣️ *Modo:* ${m.messageStubParameters[0] == 'on'? '*SOLO ADMINS* 🔒' : '*TODOS* 🔓'}
-│ 📢 *Grupo:* ${m.messageStubParameters[0] == 'on'? 'CERRADO' : 'ABIERTO'}
+│ 📢 *Casita:* ${m.messageStubParameters[0] == 'on'? 'CERRADA' : 'ABIERTA'}
 │
-│ > *“Que se escuche el trueno”* ⚡
+│ > *“Fresita cuida la entrada”* 🍓
 ╰─────────────────❒`; break
 
         case 29: // Dar admin
-            txt = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ 👑 *ASCENSO DIVINO*
+            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 👑 *ASCENSO DULCE*
 │
-│ ⚡ *Nuevo Admin:* @${m.messageStubParameters[0].split('@')[0]}
+│ 🍰 *Nuevo Admin:* @${m.messageStubParameters[0].split('@')[0]}
 │ 👤 *Otorgado por:* ${usuario}
-│ 🌙 *Rango:* Administrador
+│ 🌸 *Rango:* Administrador
 │
-│ > *“Que gobierne con poder”* ⚡
+│ > *“Que cuide la casita con amor”* 🍓
 ╰─────────────────❒`; break
 
         case 30: // Quitar admin
-            txt = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 📉 *DESTITUCIÓN*
 │
-│ 💥 *Admin caído:* @${m.messageStubParameters[0].split('@')[0]}
+│ 💥 *Admin bajado:* @${m.messageStubParameters[0].split('@')[0]}
 │ 👤 *Ejecutado por:* ${usuario}
 │ 🗑️ *Rango removido*
 │
-│ > *“El rayo no perdona”* ⚡
+│ > *“Fresita quitó los permisos”* 🍰
 ╰─────────────────❒`; break
 
         case WAMessageStubType.GROUP_PARTICIPANT_ADD:
-            txt = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ 🌩️ *NUEVO INTEGRANTE*
+            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🧁 *NUEVO GATITO*
 │
-│ 🔥 *Bienvenido:* @${m.messageStubParameters[0].split('@')[0]}
-│ 🌙 *Grupo:* ${group}
-│ ⚡ *Estado:* Ingreso registrado
+│ 🍓 *Bienvenido:* @${m.messageStubParameters[0].split('@')[0]}
+│ 🌸 *Casita:* ${group}
+│ 🍰 *Estado:* Ingreso registrado
 │
-│ > *“Prepárate para la tormenta”* ⛈️
+│ > *“Prepárate para los dulces”* 🍓
 ╰─────────────────❒`; break
 
         case WAMessageStubType.GROUP_PARTICIPANT_LEAVE:
-            txt = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 💨 *SALIDA REGISTRADA*
 │
 │ 😔 *Se fue:* @${m.messageStubParameters[0].split('@')[0]}
-│ 🌙 *Grupo:* ${group}
-│ 🌫️ *Estado:* Abandonó el grupo
+│ 🌸 *Casita:* ${group}
+│ 🌫️ *Estado:* Abandonó la casita
 │
-│ > *“Que los vientos lo guíen”* ⚡
+│ > *“Que encuentre muchos dulces”* 🍰
 ╰─────────────────❒`; break
 
         case WAMessageStubType.GROUP_PARTICIPANT_REMOVE:
-            txt = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 🚮 *EXPULSIÓN EJECUTADA*
 │
 │ 💣 *Eliminado:* @${m.messageStubParameters[0].split('@')[0]}
 │ 👤 *Por orden de:* ${usuario}
-│ ⛈️ *Causa:* Violación de reglas
+│ 🍓 *Causa:* Rompió las reglas
 │
-│ > *“El trueno ha juzgado”* ⚡
+│ > *“Fresita juzgó y decidió”* 🍰
 ╰─────────────────❒`; break
     }
 
