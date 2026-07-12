@@ -4,7 +4,7 @@ import { exec } from 'child_process'
 
 var handler = async (m, { conn, text, usedPrefix, command }) => {
     let final = text ? text.trim() : (m.quoted?.text || null)
-    if (!final) return conn.reply(m.chat, `⚡ *Escribe el contenido para tu sticker*\n\n> *Ejemplo:* ${usedPrefix + command} Hola mundo`, m)
+    if (!final) return conn.reply(m.chat, `🍓 *Escribe el contenido para tu sticker*\n\n> *Ejemplo:* ${usedPrefix + command} Hola mundo`, m)
 
     if (final.length > 35) {
         return conn.reply(m.chat, `⚠️ *Demasiado largo.*\n\n📌 Máximo: *35 letras*`, m)
@@ -15,7 +15,7 @@ var handler = async (m, { conn, text, usedPrefix, command }) => {
     try {
         const formatted = wrap(final, 28)
         const key = Buffer.from('c3lscGh5LTZmMTUwZA==', 'base64').toString('utf-8')
-        const url = `https://sylphyy.xyz/tools/brat?text=${encodeURIComponent(formatted)}&color=black&fondo=white&type=Nose&api_key=${key}`
+        const url = `https://sylphyy.xyz/tools/brat?text=${encodeURIComponent(formatted)}&color=pink&fondo=white&type=Nose&api_key=${key}` // color rosa fresita
 
         const res = await axios.get(url, { responseType: 'arraybuffer' })
 
@@ -32,8 +32,8 @@ var handler = async (m, { conn, text, usedPrefix, command }) => {
 
         await conn.sendMessage(m.chat, { 
             sticker: fs.readFileSync(webp), 
-            packname: "Barboza Developer 👤", 
-            author: "Dev Barboza x Zona Developers ⚡" 
+            packname: "Fresita Bot 🍓", 
+            author: "Creado por Whois Yallico 🍰" 
         }, { quoted: m })
 
         await m.react('✔️')
