@@ -6,30 +6,30 @@ let handler = async (m, { conn, args, isOwner }) => {
 
   if (/on/i.test(args[0])) {
     bot.antiSpam = true
-    await conn.reply(m.chat, `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ ⚡ *ANTI-SPAM ACTIVADO*
+    await conn.reply(m.chat, `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🍰 *ANTI-SPAM ACTIVADO*
 │
-│ 🌙 *Estado:* ENCENDIDO
+│ 🌸 *Estado:* ENCENDIDO
 │ 🛡️ *Filtro:* Stickers + Emojis
-│ ⛈️ *El trueno vigila el flood*
+│ 🍓 *Fresita cuida el flood*
 ╰─────────────────❒`, m)
   } else if (/off/i.test(args[0])) {
     bot.antiSpam = false
-    await conn.reply(m.chat, `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+    await conn.reply(m.chat, `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ ❌ *ANTI-SPAM DESACTIVADO*
 │
-│ 🌙 *Estado:* APAGADO
+│ 🌸 *Estado:* APAGADO
 │ ✅ *Se permiten stickers y emojis*
 ╰─────────────────❒`, m)
   } else {
-    await conn.reply(m.chat, `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ 🌩️ *PANEL ANTI-SPAM*
+    await conn.reply(m.chat, `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🧁 *PANEL ANTI-SPAM*
 │
 │ 📌 *Uso:*.antispam on /.antispam off
-│ ⚡ *Función:* Anti flood de stickers/emojis
+│ 🍰 *Función:* Anti flood de stickers/emojis
 │ 🛡️ *Límite:* 4 avisos | 6 expulsión
 │
-│ 🌙 *Mantén el grupo limpio*
+│ 🌸 *Mantén dulce la casita*
 ╰─────────────────❒`, m)
   }
 }
@@ -68,11 +68,11 @@ handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwn
 
   if (isOwner || isROwner) {
     if (count === warnLimit) {
-      await conn.reply(m.chat, `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+      await conn.reply(m.chat, `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 👑 *AVISO AL OWNER*
 │
-│ ⚡ *Bájale al spam creador*
-│ 🌀 *Estás saturando el chat*
+│ 🍰 *Bájale al spam creador*
+│ 🌸 *Estás saturando la casita*
 ╰─────────────────❒`, m)
     }
     return
@@ -81,25 +81,25 @@ handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwn
   if (m.isGroup && (isAdmin || isPrems ||!isBotAdmin)) return
 
   if (count === warnLimit) {
-    await conn.reply(m.chat, `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ ⛈️ *¡ALERTA DE SPAM!*
+    await conn.reply(m.chat, `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🍓 *¡ALERTA DE SPAM!*
 │
-│ ⚡ *Usuario:* @${sender.split('@')[0]}
+│ 🍰 *Usuario:* @${sender.split('@')[0]}
 │ 📊 *Progreso:* ${count}/${kickLimit}
-│ 🌙 *Advertencia:* Baja al flood
+│ 🌸 *Advertencia:* Baja al flood
 │
-│ > *Sigue así y cae el trueno*
+│ > *Sigue así y te saco de la casita*
 ╰─────────────────❒`, m, { mentions: [sender] })
   }
   else if (count >= kickLimit) {
-    await conn.reply(m.chat, `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ ⚡ *EXPULSIÓN EJECUTADA*
+    await conn.reply(m.chat, `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🍰 *EXPULSIÓN EJECUTADA*
 │
 │ 🚮 *Usuario:* @${sender.split('@')[0]}
 │ 📌 *Causa:* Spam de stickers/emojis
-│ ⛈️ *El trueno no perdona*
+│ 🍓 *Fresita no perdona el flood*
 │
-│ > *Grupo protegido por Nightwish*
+│ > *Casita protegida por Fresita Bot*
 ╰─────────────────❒`, m, { mentions: [sender] })
     if (m.isGroup) {
       await conn.groupParticipantsUpdate(m.chat, [sender], 'remove')
