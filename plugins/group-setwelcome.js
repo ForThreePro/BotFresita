@@ -1,10 +1,10 @@
 const handler = async (m, { conn, text, command, isAdmin, isOwner }) => {
     if (!m.isGroup || (!isAdmin &&!isOwner)) {
-        return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ ⛈️ *ACCESO DENEGADO*
+        return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🍰 *ACCESO DENEGADO*
 │
-│ ⚡ *Solo los admins o el dueño*
-│ 🌙 *pueden invocar este trueno*
+│ 🌸 *Solo los admins o el dueño*
+│ 🍓 *pueden recibir a los invitados*
 ╰─────────────────❒`);
     }
 
@@ -13,24 +13,24 @@ const handler = async (m, { conn, text, command, isAdmin, isOwner }) => {
     chat = global.db.data.chats[m.chat]
 
     if (command === 'setwelcome') {
-        if (!text) return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ 🌩️ *CONFIGURAR BIENVENIDA*
+        if (!text) return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🌸 *CONFIGURAR BIENVENIDA*
 │
-│ ⚡ *Falta el mensaje*
+│ 🍰 *Falta el mensaje*
 │
 │ 📝 *Placeholders:*
 │ @user = Mención
-│ @group = Grupo  
+│ @group = Casita  
 │ @count = Miembros
 │ @desc = Descripción
 │
 │ 💡 *Ejemplo:*
-│ .setwelcome ⛈️ @user invocó el trueno ⚡
-│ 🌩️ Bienvenido a @group
-│ 👥 Eres el guerrero #@count
+│ .setwelcome 🍓 @user llegó a la casita 🌸
+│ 🌸 Bienvenido a @group
+│ 👥 Eres el fresita #@count
 ╰─────────────────❒`);
         chat.customWelcome = text.trim();
-        return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+        return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ ✅ *BIENVENIDA GUARDADA*
 │
 │ 📝 *Vista previa:*
@@ -40,17 +40,17 @@ const handler = async (m, { conn, text, command, isAdmin, isOwner }) => {
 ╰─────────────────❒`);
     }
     if (command === 'delwelcome') {
-        if (!chat.customWelcome) return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+        if (!chat.customWelcome) return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ ⚠️ *SIN BIENVENIDA*
 │
-│ 🌙 *No tienes una bienvenida editada*
+│ 🌸 *No tienes una bienvenida editada*
 ╰─────────────────❒`);
         delete chat.customWelcome;
-        return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+        return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ ✅ *BIENVENIDA ELIMINADA*
 │
 │ 🗑️ *Se borró el mensaje personalizado*
-│ ⚡ *Ahora se usa la de welcome.js*
+│ 🍰 *Ahora se usa la de welcome.js*
 ╰─────────────────❒`);
     }
 };
