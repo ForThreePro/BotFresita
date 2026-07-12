@@ -25,8 +25,8 @@ export async function before(m, { conn }) {
     }
     const user = `@${userName}`;
 
-    // [DATOS DEL GRUPO]
-    const groupName = groupMetadata.subject || 'Mi Grupo';
+    // [DATOS DE LA CASITA]
+    const groupName = groupMetadata.subject || 'Mi Casita';
     const groupDesc = groupMetadata.desc?.toString() || '📜 Sin descripción';
     const groupMembers = groupMetadata.participants.length;
 
@@ -48,56 +48,56 @@ export async function before(m, { conn }) {
 
     let text = '', audioFile = '';
 
-    // [SWITCH DISEÑO TEAM NIGHTWISH]
+    // [SWITCH DISEÑO FRESITA BOT]
     if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
       audioFile = './bienvenida.mp3';
       text = chat.customWelcome
-  ? chat.customWelcome.replace(/@user/gi, user).replace(/@group/gi, groupName).replace(/@count/gi, groupMembers).replace(/@desc/gi, groupDesc)
-        : `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ 🌙 *NUEVO INTEGRANTE*
+ ? chat.customWelcome.replace(/@user/gi, user).replace(/@group/gi, groupName).replace(/@count/gi, groupMembers).replace(/@desc/gi, groupDesc)
+        : `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🌸 *NUEVO GATITO*
 │
-│ ⚡ *Bienvenido:* ${user}
-│ ⛈️ *Acaba de unirse a la tormenta*
+│ 🍰 *Bienvenido:* ${user}
+│ 🍓 *Acaba de llegar a la casita dulce*
 │
-│ 🎮 *Grupo:* ${groupName}
+│ 🏠 *Casita:* ${groupName}
 │ 👥 *Miembros:* ${groupMembers}
 │ 📜 *Descripción:* ${groupDesc}
 │
-│ > *“Que el trueno te guíe en la noche”*
+│ > *“Que encuentres muchos dulces aquí”*
 ╰─────────────────❒`.trim();
 
     } else if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_LEAVE) {
       audioFile = './despedida.mp3';
       text = chat.customBye
-  ? chat.customBye.replace(/@user/gi, user).replace(/@group/gi, groupName).replace(/@count/gi, groupMembers).replace(/@desc/gi, groupDesc)
-        : `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+ ? chat.customBye.replace(/@user/gi, user).replace(/@group/gi, groupName).replace(/@count/gi, groupMembers).replace(/@desc/gi, groupDesc)
+        : `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 💨 *SALIDA REGISTRADA*
 │
-│ 🌫️ *Se fue:* ${user}
-│ ⛈️ *Abandonó la tormenta*
+│ 😔 *Se fue:* ${user}
+│ 🍰 *Abandonó la casita*
 │
-│ 🎮 *Grupo:* ${groupName}
+│ 🏠 *Casita:* ${groupName}
 │ 👥 *Quedan:* ${groupMembers}
 │ 📜 *Motivo:* Salida voluntaria
 │
-│ > *“Que los vientos nocturnos lo acompañen”*
+│ > *“Que te vaya dulce por donde vayas”*
 ╰─────────────────❒`.trim();
 
     } else if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_REMOVE) {
       audioFile = './kick.mp3';
       text = chat.customKick
-  ? chat.customKick.replace(/@user/gi, user).replace(/@group/gi, groupName).replace(/@count/gi, groupMembers).replace(/@desc/gi, groupDesc)
-        : `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+ ? chat.customKick.replace(/@user/gi, user).replace(/@group/gi, groupName).replace(/@count/gi, groupMembers).replace(/@desc/gi, groupDesc)
+        : `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 🚮 *EXPULSIÓN EJECUTADA*
 │
 │ 💣 *Eliminado:* ${user}
-│ ⚡ *Juicio del trueno aplicado*
+│ 🍓 *Juicio de fresita aplicado*
 │
-│ 🎮 *Grupo:* ${groupName}
+│ 🏠 *Casita:* ${groupName}
 │ 👥 *Quedan:* ${groupMembers}
-│ 📜 *Motivo:* Violó las leyes del grupo
+│ 📜 *Motivo:* Rompió las reglas de la casita
 │
-│ > *“El rayo no perdona la traición”*
+│ > *“Fresita no tolera el spam”*
 ╰─────────────────❒`.trim();
     } else return true;
 
