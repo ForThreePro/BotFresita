@@ -1,10 +1,10 @@
 const handler = async (m, { conn, text, command, isAdmin, isOwner }) => {
     if (!m.isGroup || (!isAdmin &&!isOwner)) {
-        return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ ⛈️ *ACCESO DENEGADO*
+        return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🍰 *ACCESO DENEGADO*
 │
-│ ⚡ *Solo los admins o el dueño*
-│ 🌙 *pueden controlar la tormenta*
+│ 🌸 *Solo los admins o el dueño*
+│ 🍓 *pueden decorar la casita*
 ╰─────────────────❒`);
     }
 
@@ -13,16 +13,16 @@ const handler = async (m, { conn, text, command, isAdmin, isOwner }) => {
     chat = global.db.data.chats[m.chat]
 
     if (command === 'setbye') {
-        if (!text) return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
-│ 🌩️ *CONFIGURAR DESPEDIDA*
+        if (!text) return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
+│ 🌸 *CONFIGURAR DESPEDIDA*
 │
-│ ⚡ *Falta el mensaje*
+│ 🍰 *Falta el mensaje*
 │
 │ 💡 *Ejemplo:*
-│ .setbye 💨 @user fue consumido por la tormenta ⚡
+│ .setbye 🍓 @user salió de la casita a buscar fresitas 🌸
 ╰─────────────────❒`);
         chat.customBye = text.trim();
-        return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+        return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ ✅ *DESPEDIDA GUARDADA*
 │
 │ 📝 *Vista previa:*
@@ -32,13 +32,13 @@ const handler = async (m, { conn, text, command, isAdmin, isOwner }) => {
 ╰─────────────────❒`);
     }
     if (command === 'delbye') {
-        if (!chat.customBye) return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+        if (!chat.customBye) return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ ⚠️ *SIN DESPEDIDA*
 │
-│ 🌙 *No tienes una despedida editada*
+│ 🌸 *No tienes una despedida editada*
 ╰─────────────────❒`);
         delete chat.customBye;
-        return m.reply(`╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+        return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ ✅ *DESPEDIDA ELIMINADA*
 │
 │ 🗑️ *Se borró el mensaje personalizado*
