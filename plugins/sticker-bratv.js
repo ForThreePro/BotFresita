@@ -2,7 +2,7 @@ import { sticker, addExif } from '../lib/sticker.js'
 import axios from 'axios'
 import fetch from 'node-fetch'
 
-const MARCA = 'For Three Bot 🌀' // <- TU MARCA
+const MARCA = 'Fresita Bot 🍓' // <- TU MARCA
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 const fetchSticker = async (text, attempt = 1) => {
@@ -34,7 +34,7 @@ let texto2 = packstickers.text2 || MARCA // <- TU MARCA POR DEFECTO
 switch (command) {
 case 'brat': {
 text = m.quoted?.text || text
-if (!text) return conn.sendMessage(m.chat, { text: `❀ Por favor, responde a un mensaje o ingresa un texto para crear el Sticker.\n${MARCA}` }, { quoted: m }) // <- TU MARCA
+if (!text) return conn.sendMessage(m.chat, { text: `🍓 Por favor, responde a un mensaje o ingresa un texto para crear el Sticker.\n${MARCA}` }, { quoted: m }) // <- TU MARCA
 await m.react('🕒')
 const buffer = await fetchSticker(text)
 const stiker = await sticker(buffer, false, texto1, texto2)
@@ -45,7 +45,7 @@ break
 }
 case 'bratv': {
 text = m.quoted?.text || text
-if (!text) return conn.sendMessage(m.chat, { text: `❀ Por favor, responde a un mensaje o ingresa un texto para crear el Sticker.\n${MARCA}` }, { quoted: m }) // <- TU MARCA
+if (!text) return conn.sendMessage(m.chat, { text: `🍓 Por favor, responde a un mensaje o ingresa un texto para crear el Sticker.\n${MARCA}` }, { quoted: m }) // <- TU MARCA
 await m.react('🕒')
 const videoBuffer = await fetchStickerVideo(text)
 const stickerBuffer = await sticker(videoBuffer, null, texto1, texto2)
@@ -54,7 +54,7 @@ await m.react('✔️')
 break
 }
 case 'emojimix': {
-if (!args[0]) return m.reply(`❀ Ingresa 2 emojis para combinar.\n> Ejemplo: *${usedPrefix + command}* 👻+👀\n${MARCA}`) // <- TU MARCA
+if (!args[0]) return m.reply(`🍓 Ingresa 2 emojis para combinar.\n> Ejemplo: *${usedPrefix + command}* 👻+👀\n${MARCA}`) // <- TU MARCA
 let [emoji1, emoji2] = text.split`+`
 await m.react('🕒')
 const res = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
@@ -68,7 +68,7 @@ break
 }
 case 'qc': {
 let textFinal = args.join(' ') || m.quoted?.text
-if (!textFinal) return conn.reply(m.chat, `❀ Ingresa un texto para crear el sticker.\n${MARCA}`, m) // <- TU MARCA
+if (!textFinal) return conn.reply(m.chat, `🍓 Ingresa un texto para crear el sticker.\n${MARCA}`, m) // <- TU MARCA
 let target = m.quoted? await m.quoted.sender : m.sender
 const pp = await conn.profilePictureUrl(target).catch((_) => 'https://telegra.ph/file/24fa902ead26340f3df2c.png')
 const nombre = await (async () => global.db.data.users[target].name || (async () => { try { const n = await conn.getName(target); return typeof n === 'string' && n.trim()? n : target.split('@')[0] } catch { return target.split('@')[0] } })())()
@@ -87,7 +87,7 @@ await conn.sendFile(m.chat, stiker, 'sticker.webp', '', m)
 break
 }
 case 'take': case 'wm': {
-if (!m.quoted) return m.reply(`❀ Responde a un sticker con el comando *${usedPrefix + command}* seguido del nuevo nombre.\n> Ejemplo: *${usedPrefix + command}* NuevoNombre\n${MARCA}`) // <- TU MARCA
+if (!m.quoted) return m.reply(`🍓 Responde a un sticker con el comando *${usedPrefix + command}* seguido del nuevo nombre.\n> Ejemplo: *${usedPrefix + command}* NuevoNombre\n${MARCA}`) // <- TU MARCA
 await m.react('🕒')
 const stickerData = await m.quoted.download()
 if (!stickerData) return await m.react('✖️'), m.reply(`ꕥ No se pudo descargar el sticker.\n${MARCA}`) // <- TU MARCA
@@ -104,7 +104,7 @@ conn.sendMessage(m.chat, { text: `⚠︎ Se ha producido un problema.\n> Usa *${
 }}
 
 handler.tags = ['sticker']
-handler.help = ['bratv']
-handler.command = ['bratv']
+handler.help = ['brat', 'bratv', 'emojimix', 'qc', 'take']
+handler.command = ['brat', 'bratv', 'emojimix', 'qc', 'take', 'wm']
 
 export default handler
