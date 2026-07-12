@@ -6,15 +6,15 @@ let handler = async (m) => {
     const used = process.memoryUsage()
     let cpu = os.loadavg()[0].toFixed(2)
 
-    let info = `╭─❒ *『 𝗧𝗘𝗔𝗠 𝗡𝗜𝗚𝗛𝗧𝗪𝗜𝗦𝗛 』* ❒
+    let info = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 📊 *ESTADO DEL BOT*
 │
 │ ⏰ *Uptime:* ${muptime}
 │ 🧠 *RAM Usada:* ${(used.heapUsed / 1024 / 1024).toFixed(2)} MB
-│ ⚡ *Carga CPU:* ${cpu}%
+│ 🍰 *Carga CPU:* ${cpu}%
 │
 │ 👑 *Desarrollado por:* Whois Yallico
-│ > *“Que el trueno nunca se apague”*
+│ > *“Que las fresitas nunca se acaben”*
 ╰─────────────────❒`
 
     m.reply(info)
