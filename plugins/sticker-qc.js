@@ -6,7 +6,7 @@ const handler = async (m, { conn, args }) => {
     let authorName, text, pp;
 
     if (!args.length &&!(m.quoted && m.quoted.text)) {
-        throw "⚡ *RAYO PREM* ➔ Ingresa un texto para crear tu *quotly*.\n\n> Ejemplo:.qc Hola mundo\n> Ejemplo:.qc @user Nombre / Hola\n> Ejemplo:.qc Nombre / Hola";
+        throw "🍓 *FRESITA BOT* ➔ Ingresa un texto para crear tu *quotly*.\n\n> Ejemplo:.qc Hola mundo\n> Ejemplo:.qc @user Nombre / Hola\n> Ejemplo:.qc Nombre / Hola";
     }
 
     // 🔹 Caso extendido:.qc @user NombreAutor / Texto
@@ -17,14 +17,14 @@ const handler = async (m, { conn, args }) => {
         text = textParts.join("/").trim();
         pp = await conn.profilePictureUrl(mentionedJid, 'image').catch(_ => 'https://files.catbox.moe/6w3x2p.jpg');
     }
-    // 🔹 Caso nuevo:.qc NombreAutor / Texto → usa foto fija
+    // 🔹 Caso nuevo:.qc NombreAutor / Texto → usa foto fija fresita
     else if (!mentionedJid && args.join(" ").includes("/")) {
         const joined = args.join(" ");
         const [authorNameRaw,...textParts] = joined.split("/");
         authorName = authorNameRaw?.trim() || "Anónimo";
         text = textParts.join("/").trim();
-        // 📌 Foto fija Rayo Prem
-        pp = "https://files.evogb.win/91Vvmc.jpg";
+        // 📌 Foto fija Fresita Bot
+        pp = "https://files.evogb.win/91Vvmc.jpg"; // Cambia por tu imagen fresita si quieres
     }
     // 🔹 Caso simple:.qc <texto>
     else if (!mentionedJid && args.length >= 1) {
@@ -47,16 +47,16 @@ const handler = async (m, { conn, args }) => {
         pp = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.evogb.win/91Vvmc.jpg');
     }
     else {
-        return conn.reply(m.chat, "⚡ *RAYO PREM* ➔ Formato inválido.\n\n> Usa:.qc Hola mundo\n> Usa:.qc @user Nombre / Texto\n> Usa:.qc Nombre / Texto", m);
+        return conn.reply(m.chat, "🍓 *FRESITA BOT* ➔ Formato inválido.\n\n> Usa:.qc Hola mundo\n> Usa:.qc @user Nombre / Texto\n> Usa:.qc Nombre / Texto", m);
     }
 
-    if (!text) return conn.reply(m.chat, '⚡ *RAYO PREM* ➔ Ingresa un texto para el sticker.', m)
-    if (text.length > 30) return conn.reply(m.chat, '⚡ *RAYO PREM* ➔ Máximo 30 caracteres. El trueno es breve.', m)
+    if (!text) return conn.reply(m.chat, '🍓 *FRESITA BOT* ➔ Ingresa un texto para el sticker.', m)
+    if (text.length > 30) return conn.reply(m.chat, '🍓 *FRESITA BOT* ➔ Máximo 30 caracteres. La fresita es breve.', m)
 
     const obj = {
         "type": "quote",
         "format": "png",
-        "backgroundColor": "#000000",
+        "backgroundColor": "#FF69B4", // Rosa fresita
         "width": 512,
         "height": 768,
         "scale": 2,
@@ -73,7 +73,7 @@ const handler = async (m, { conn, args }) => {
         }]
     };
 
-    await conn.sendMessage(m.chat, { react: { text: "⚡", key: m.key } })
+    await conn.sendMessage(m.chat, { react: { text: "🍓", key: m.key } })
 
     try {
         const json = await axios.post('https://btzqc.betabotz.eu.org/generate', obj, {
@@ -81,17 +81,17 @@ const handler = async (m, { conn, args }) => {
         });
 
         const buffer = Buffer.from(json.data.result.image, 'base64');
-        const stiker = await sticker(buffer, false, 'Team Nightwish', 'Whois Yallico'); // Cambiado marca
+        const stiker = await sticker(buffer, false, 'Fresita Bot', 'Whois Yallico'); // Marca cambiada
 
         if (stiker) {
-            await conn.sendFile(m.chat, stiker, 'RayoPrem.webp', '⚡ *Rayo Prem* | Quotly', m); // Cambiado caption
-            await conn.sendMessage(m.chat, { react: { text: "🌙", key: m.key } })
+            await conn.sendFile(m.chat, stiker, 'FresitaBot.webp', '🍓 *Fresita Bot* | Quotly', m); // Caption cambiada
+            await conn.sendMessage(m.chat, { react: { text: "🌸", key: m.key } })
         } else {
             await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } })
         }
     } catch (e) {
         console.error(e);
-        await conn.reply(m.chat, "⚡ *RAYO PREM ERROR* ➔ Falló al generar el sticker. Intenta de nuevo.", m);
+        await conn.reply(m.chat, "🍓 *FRESITA BOT ERROR* ➔ Falló al generar el sticker. Intenta de nuevo.", m);
         await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } })
     }
 }
