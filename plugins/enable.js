@@ -7,7 +7,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   let bot = global.db.data.settings[conn.user.jid] || {}
   let type = command.toLowerCase()
 
-  if (!args[0]) return m.reply(`⛈️ *RAYO PREM CONFIG* 🌙\n\n⚡ *Configuración incorrecta.*\n📌 *Uso:* ${usedPrefix + command} on/off\n*Ejemplo:* ${usedPrefix + command} on`)
+  if (!args[0]) return m.reply(`🍓 *FRESITA BOT CONFIG* 🍰\n\n🌸 *Configuración incorrecta.*\n📌 *Uso:* ${usedPrefix + command} on/off\n*Ejemplo:* ${usedPrefix + command} on`)
 
   let fail = false
   switch (type) {
@@ -60,17 +60,17 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 
   if (fail) return
 
-  // SOLO IMAGEN LOCAL rayo.jpg
+  // SOLO IMAGEN LOCAL rayo.jpg - NO SE TOCA
   const pathImg = join(process.cwd(), 'storage', 'img', 'rayo.jpg')
   let rayoImg = existsSync(pathImg)? readFileSync(pathImg) : null
 
-  let estadoTexto = isEnable? 'Activado ⚡' : 'Desactivado 🌑'
-  let emoji = isEnable? '🌩️' : '⛈️'
+  let estadoTexto = isEnable? 'Activado 🍰' : 'Desactivado 🌸'
+  let emoji = isEnable? '🍓' : '🍰'
 
-  let statusTxt = `${emoji} *RAYO PREM CONFIG* 🌙\n\n`
-  statusTxt += `⚡ *Función:* ${type}\n`
+  let statusTxt = `${emoji} *FRESITA BOT CONFIG* 🍓\n\n`
+  statusTxt += `🍰 *Función:* ${type}\n`
   statusTxt += `📊 *Estado:* ${estadoTexto}\n\n`
-  statusTxt += `⛈️ *Team Nightwish*`
+  statusTxt += `🍓 *Fresita Bot*`
 
   if (rayoImg) {
     await conn.sendMessage(m.chat, {
