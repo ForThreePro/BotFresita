@@ -1,70 +1,58 @@
-import axios from 'axios'
-import fs from 'fs'
-import { exec } from 'child_process'
+import { sticker } from '../lib/sticker.js';
+import axios from 'axios';
 
-var handler = async (m, { conn, text, usedPrefix, command }) => {
-    let final = text ? text.trim() : (m.quoted?.text || null)
-    if (!final) return conn.reply(m.chat, `🍓 *Escribe el contenido para tu sticker*\n\n> *Ejemplo:* ${usedPrefix + command} Hola mundo`, m)
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-    if (final.length > 35) {
-        return conn.reply(m.chat, `⚠️ *Demasiado largo.*\n\n📌 Máximo: *35 letras*`, m)
+const fetchSticker = async (text, attempt = 1) => {
+    try {
+        const res = await axios.get('https://kepolu-brat.hf.space/brat', {
+            params: { q: text },
+            responseType: 'arraybuffer',
+            timeout: 15000
+        });
+        return res.data;
+    } catch (err) {
+        if (err.response?.status === 429 && attempt <= 3) {
+            const retryAfter = err.response.headers['retry-after'] || 5;
+            await delay(retryAfter * 1000);
+            return fetchSticker(text, attempt + 1);
+        }
+        throw err;
+    }
+};
+
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+    if (!text) {
+        return conn.sendMessage(m.chat, {
+            text: `🍓 *Fresita Bot* 🍓\n\n😒 ¿Y el texto, genio?\n\n📌 *Usa:* ${usedPrefix}${command} tu texto aquí\n\n*Ejemplo:* ${usedPrefix}${command} Team Nightwish`,
+        }, { quoted: m });
     }
 
-    await m.react('🕒')
+    await conn.sendMessage(m.chat, { react: { text: '🍓', key: m.key } });
 
     try {
-        const formatted = wrap(final, 28)
-        const key = Buffer.from('c3lscGh5LTZmMTUwZA==', 'base64').toString('utf-8')
-        const url = `https://sylphyy.xyz/tools/brat?text=${encodeURIComponent(formatted)}&color=pink&fondo=white&type=Nose&api_key=${key}` // color rosa fresita
+        const buffer = await fetchSticker(text);
+        const stiker = await sticker(buffer, false, 'Team Nightwish', 'Rayo Prem Bot');
 
-        const res = await axios.get(url, { responseType: 'arraybuffer' })
-
-        const img = `./tmp-${Date.now()}.png`
-        const webp = `./tmp-${Date.now()}.webp`
-        fs.writeFileSync(img, res.data)
-
-        await new Promise((resolve, reject) => {
-            exec(`ffmpeg -i ${img} -vcodec libwebp -vf "scale=512:512:force_original_aspect_ratio=decrease,format=rgba,pad=512:512:(ow-iw)/2:(oh-ih)/2:color=#00000000" ${webp}`, (err) => {
-                if (err) reject(err)
-                else resolve()
-            })
-        })
-
-        await conn.sendMessage(m.chat, { 
-            sticker: fs.readFileSync(webp), 
-            packname: "Fresita Bot 🍓", 
-            author: "Creado por Whois Yallico 🍰" 
-        }, { quoted: m })
-
-        await m.react('✔️')
-
-        if (fs.existsSync(img)) fs.unlinkSync(img)
-        if (fs.existsSync(webp)) fs.unlinkSync(webp)
-
-    } catch (e) {
-        await m.react('❌')
-        m.reply('⚠️ Error en la generación.')
-    }
-}
-
-function wrap(text, max = 22) {
-    let words = text.split(' ')
-    let lines = []
-    let cur = []
-    for (let w of words) {
-        if ((cur.join(' ').length + w.length + 1) > max) {
-            lines.push(cur.join(' '))
-            cur = [w]
+        if (stiker) {
+            await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
+            return conn.sendFile(m.chat, stiker, 'brat.webp', '', m);
         } else {
-            cur.push(w)
+            throw new Error('No se pudo generar el sticker');
         }
+    } catch (err) {
+        console.error('[BRAT ERROR]', err);
+        await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
+        return conn.sendMessage(m.chat, {
+            text: `💀 *Rayo Prem Bot* \n\nError al generar el sticker:\n${err.message || 'La API está saturada, intenta en 5 seg'}`,
+        }, { quoted: m });
     }
-    if (cur.length) lines.push(cur.join(' '))
-    return lines.join('\n')
-}
+};
 
-handler.help = ['brat']
-handler.tags = ['sticker']
-handler.command = /^(brat)$/i
+handler.command = ['brat', 'bratt'];
+handler.tags = ['sticker', 'nightwish'];
+handler.help = ['brat *<texto>*'];
+handler.group = false;
+handler.register = false; // pon true si quieres que solo usuarios registrados lo usen
 
-export default handler
+export default handler;
