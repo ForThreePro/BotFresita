@@ -3,21 +3,28 @@ let mutedUsers = new Set();
 let handler = async (m, { conn, command, participants }) => {
     let mentionedJid = m.mentionedJid[0]? m.mentionedJid[0] : m.quoted? m.quoted.sender : false;
     if (!mentionedJid) return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
-│ 🔇 *SISTEMA DE MUTE*
+│ 💕 *ERROR DE SISTEMA*
 │
-│ 🌸 *Etiqueta a una persona o responde a un mensaje*
+│ 🍰 *USO:* Responde a un mensaje
+│
+│ > *“Protocolo de muteo requiere objetivo”* 🍓
 ╰─────────────────❒`);
 
     let isUserAdmin = participants.find(p => p.id === mentionedJid)?.admin;
     if (isUserAdmin) return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
-│ ❌ *ERROR*
+│ 🛡️ *ACCESO DENEGADO*
 │
-│ 🍰 *No puedes mutear a un administrador*
+│ ⚠️ *No se puede mutear a un administrador*
+│
+│ > *“Rango superior detectado”* 💕
 ╰─────────────────❒`);
+
     if (mentionedJid === conn.user.jid) return m.reply(`╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
-│ ❌ *ERROR*
+│ 🤖 *PROTOCOLO FALLIDO*
 │
-│ 🍰 *No puedo mutearme a mi mismo*
+│ ⚠️ *No puedo realizar esta acción conmigo mismo*
+│
+│ > *“Autoeliminacion no permitida”* ❌
 ╰─────────────────❒`);
 
     if (command === "mute") {
@@ -25,16 +32,20 @@ let handler = async (m, { conn, command, participants }) => {
         conn.reply(m.chat, `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
 │ 🔇 *USUARIO SILENCIADO*
 │
-│ 🍰 *@${mentionedJid.split('@')[0]}*
-│ 🌸 *Sus mensajes serán eliminados*
+│ 👤 *Objetivo:* @${mentionedJid.split('@')[0]}
+│ 📊 *Estado:* MUTE ACTIVADO
+│
+│ > *“Se eliminaran sus mensajes”* 🍰
 ╰─────────────────❒`, m, { mentions: [mentionedJid] });
     } else if (command === "unmute") {
         mutedUsers.delete(mentionedJid);
         conn.reply(m.chat, `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
-│ 🔊 *USUARIO DESMUTEADO*
+│ 🔊 *USUARIO LIBERADO*
 │
-│ 🍰 *@${mentionedJid.split('@')[0]}*
-│ 🌸 *Ya puede hablar de nuevo en la casita*
+│ 👤 *Objetivo:* @${mentionedJid.split('@')[0]}
+│ 📊 *Estado:* MUTE DESACTIVADO
+│
+│ > *“Puede volver a escribir”* 💕
 ╰─────────────────❒`, m, { mentions: [mentionedJid] });
     }
 };
@@ -50,11 +61,11 @@ handler.before = async (m, { conn, isAdmin }) => {
     }
 };
 
-handler.help = ['mute', 'unmute'].map(v => v + ' @user');
+handler.help = ['mute ( Reacciona Al Mensaje )', 'unmute ( Reacciona Al Mensaje )'].map(v => v + ' @user');
 handler.tags = ['grupos'];
 handler.command = /^(mute|unmute)$/i;
 handler.group = true;
 handler.admin = true;
 handler.botAdmin = true;
 
-export default handler;
+export default handler
