@@ -95,38 +95,10 @@ handler.before = async function (m, { conn, groupMetadata }) {
 │ > *“Fresita quitó los permisos”* 🍰
 ╰─────────────────❒`; break
 
-        case WAMessageStubType.GROUP_PARTICIPANT_ADD:
-            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
-│ 🧁 *NUEVO GATITO*
-│
-│ 🍓 *Bienvenido:* @${m.messageStubParameters[0].split('@')[0]}
-│ 🌸 *Casita:* ${group}
-│ 🍰 *Estado:* Ingreso registrado
-│
-│ > *“Prepárate para los dulces”* 🍓
-╰─────────────────❒`; break
-
-        case WAMessageStubType.GROUP_PARTICIPANT_LEAVE:
-            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
-│ 💨 *SALIDA REGISTRADA*
-│
-│ 😔 *Se fue:* @${m.messageStubParameters[0].split('@')[0]}
-│ 🌸 *Casita:* ${group}
-│ 🌫️ *Estado:* Abandonó la casita
-│
-│ > *“Que encuentre muchos dulces”* 🍰
-╰─────────────────❒`; break
-
-        case WAMessageStubType.GROUP_PARTICIPANT_REMOVE:
-            txt = `╭─🍓 *『 𝐅𝐑𝐄𝐒𝐈𝐓𝐀 𝐁𝐎𝐓 』* 🍓
-│ 🚮 *EXPULSIÓN EJECUTADA*
-│
-│ 💣 *Eliminado:* @${m.messageStubParameters[0].split('@')[0]}
-│ 👤 *Por orden de:* ${usuario}
-│ 🍓 *Causa:* Rompió las reglas
-│
-│ > *“Fresita juzgó y decidió”* 🍰
-╰─────────────────❒`; break
+        // ELIMINADOS: WELCOME / BYE / KICK
+        // case WAMessageStubType.GROUP_PARTICIPANT_ADD:
+        // case WAMessageStubType.GROUP_PARTICIPANT_LEAVE:
+        // case WAMessageStubType.GROUP_PARTICIPANT_REMOVE:
     }
 
     if (txt) {
